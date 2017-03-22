@@ -3,14 +3,12 @@ import time
 import glob
 import termios
 
-time.sleep(1)
 ports = glob.glob('/dev/ttyUSB*')
 # Define and open the serial com ports
 """ To be added:
 BM as Battery Management
 MC as Motor Controller
 LR as LORA
-Exception for termios.error in flush
 """
 ser = [0] * 5
 port_no = 0
