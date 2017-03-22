@@ -1,19 +1,34 @@
 import serial
 import time
+import glob
+import termios
 
+time.sleep(1)
+ports = glob.glob('/dev/ttyUSB*')
 # Define and open the serial com ports
+""" To be added:
+BM as Battery Management
+MC as Motor Controller
+LR as LORA
+Exception for termios.error in flush
+"""
 ser = [0] * 5
-ser[0] = serial.Serial('/dev/ttyUSB0', 9600)
-ser[1] = serial.Serial('/dev/ttyUSB1', 9600)
-
+port_no = 0
+for port in ports:
+	try:
+		ser[port_no] = serial.Serial(port,9600) 
+		port_no += 1
+		print port
+	except (OSError, serial.SerialException):
+		pass
 # Wait for initialization
 print 'Sleeping for 1 second for initializing'
 time.sleep(1)
-
+#print port_no
 serial_count = 0;
 # Identify the ports
-while serial_count != 2:
-	for i in range(0,2):
+while serial_count != port_no :
+	for i in range(0,port_no):
 		data_array = ser[i].readline().split("\n")
 		usb_id = str(data_array[0])
 		if usb_id == 'SC': # If Sensor Controller
@@ -37,12 +52,24 @@ while serial_count != 2:
 
 # Read the data	
 while True:
+	if 'sc' in locals():
+		try:
+			if sc.inWaiting:
+				sc.flush()
+				sc_data_array = sc.readline().split("\n")
+				sc_data_1 = str(sc_data_array[0])
+				print "Sc says:", sc_data_1
+		except Exception as e:
+			pass
 
-	sc.flush()
-	sc_data_array = sc.readline().split("\n")
-	sc_data_1 = str(sc_data_array[0])
-	print "Sc says:", sc_data_1
-	ra.flush()
-	ra_data_array = ra.readline().split("\n")
-	ra_data_1 = str(ra_data_array[0])
-	print "Ra says:", ra_data_1 
+	if 'ra' in locals():
+		try:
+			if ra.inWaiting:
+				ra.flush()
+				ra_data_array = ra.readline().split("\n")
+				ra_data_1 = str(ra_data_array[0])
+				print "Ra says:", ra_data_1
+		except Exception as e:
+			pass		 
+
+
