@@ -10,8 +10,9 @@ ports = glob('/dev/ttyUSB*')
 serials = []
 utilities = {}
 utility_names = {"SC": "Sensor Controller", "BM": "Battery Management",
-                "RA": "Robotic Arm", "MC": "Motor Controller",
-                "LR": "LORA"}
+                 "RA": "Robotic Arm", "MC": "Motor Controller",
+                 "LR": "LORA"}
+
 
 def read_data(utility_name):
     utility = utilities[utility_name]
@@ -20,7 +21,8 @@ def read_data(utility_name):
         data_array = utility.readline().split("\n")
         utility_data = str(data_array[0])
 
-        print(utility_name + " says:", utility_data)
+        print(utility_name + " says:" + utility_data)
+
 
 for port in ports:
     try:
@@ -29,8 +31,10 @@ for port in ports:
     except (OSError, serial.SerialException):
         pass
 
+
 serial_count = 0
 num_serials = len(serials)
+
 
 print('Sleeping for 1 second for initializing')
 time.sleep(1)
