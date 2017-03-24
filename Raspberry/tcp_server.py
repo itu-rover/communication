@@ -1,21 +1,24 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import socket
 import time
 
-serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-host = ''
-
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+host = '10.42.0.69'
 port = 1234
 
-serversocket.bind((host, port))
-
-serversocket.listen(5)
+server.bind((host, port))
+server.listen(5)
 
 while True:
-	clientsocket,addr = serversocket.accept()
+    client, addr = server.accept()
     print("Got a connection from %s" % str(addr))
-    currentTime = time.ctime(time.time()) + "\r\n"
-    clientsocket.send(currentTime.encode('ascii'))
-    data = clientsocket.recv(1024)
-    print data
-    clientsocket.close()
+
+    current_time = time.ctime() + "\r\n"
+    client.send(current_time.encode('ascii'))
+
+    data = client.recv(1024)
+    print(data)
+
+    client.close()
