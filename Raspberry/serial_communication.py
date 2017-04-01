@@ -5,7 +5,6 @@ import time
 from glob import glob
 import serial
 
-
 ports = glob('/dev/ttyUSB*')
 serials = []
 utilities = {}
@@ -16,13 +15,13 @@ utility_names = {"SC": "Sensor Controller", "BM": "Battery Management",
 
 def read_data(utility_name):
     utility = utilities[utility_name]
+
     if utility.inWaiting:
         utility.flush()
         data_array = utility.readline().split("\n")
         utility_data = str(data_array[0])
 
-        print(utility_name + " says:" + utility_data)
-
+        return utility_data
 
 for port in ports:
     try:
@@ -31,14 +30,11 @@ for port in ports:
     except (OSError, serial.SerialException):
         pass
 
-
 serial_count = 0
 num_serials = len(serials)
 
-
 print('Sleeping for 1 second for initializing')
 time.sleep(1)
-
 
 while serial_count != num_serials:
     serial_data = serials[serial_count].readline().split("\n")
@@ -56,12 +52,11 @@ while serial_count != num_serials:
         utility.flushOutput()
         utilities[utility_name] = utility
 
-        serial_count +=1
-
+        serial_count += 1
 
 while True:
     for utility_name in utility_names:
         try:
-            read_data(utility_name)
+            print(read_data(utility_name))
         except Exception:
             pass
