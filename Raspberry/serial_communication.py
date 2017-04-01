@@ -18,7 +18,8 @@ def read_data(utility_name):
     utility = utilities[utility_name]
     if utility.inWaiting:
         utility.flush()
-        data_array = utility.readline().split("\n")
+        data_array = yield utility.readline()
+        data_array = data_array.split("")
         utility_data = str(data_array[0])
 
         print(utility_name + " says:" + utility_data)
@@ -66,7 +67,11 @@ while serial_count != num_serials:
 while True:
     for utility_name in utility_names:
         try:
-            read_data(utility_name)
+            msg = read_data(utility_name)
+            if msg is not None:
+                print(msg)
+            else:
+                print("msg is None")
         except Exception:
             pass
 
