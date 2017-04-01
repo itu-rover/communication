@@ -5,10 +5,13 @@ import socket
 
 host = '10.42.0.69'
 port = 1234
-
+s = socket.socket()
+s.connect((host,port))
 while True:
-    client = socket.socket()
-    client.connect((host, port))
-    print(client.recv(1024))
-    client.send("Selam Pi")
-    client.close()
+	try:
+		print(s.recv(1024))
+		s.send("Selam Pi")
+	except Exception:
+		print("Error, socket closing")
+		s.close()	
+		quit()
