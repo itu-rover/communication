@@ -1,38 +1,37 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import asyncore
 import socket
 import time
-import atexit
+from settings import *
 
 
-class Server(object):
+class EchoHandler(asyncore.dispatcher_with_send):
+    def handle_read(self):
+        data = self.recv(1024)
+        print(data)
+        if data:
+            server_data = "Hello, I'm Server"
+            self.send(server_data)
+
+
+class EchoServer(asyncore.dispatcher):
     def __init__(self, host, port):
-        self.host = host
-        self.port = port
-        self.msg = None
-        self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        serversocket.bind((host, port))
-        self.run()
+        asyncore.dispatcher.__init__(self)
+        self.create_socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.set_reuse_addr()
+        self.bind((host, port))
+        self.listen(5)
 
-    def run(self):
-        while True:
-            try:
-                serversocket.listen(5)
-                clientsocket, addr = serversocket.accept()
-                print("Got a connection from %s" % str(addr))
-            while True:
-                try:
-                    if self.msg:
-                        clientsocket.send(self.msg.encode('ascii'))
-                    self.data = clientsocket.recv(1024)
-                    time.sleep(.5)
-                except Exception:
-                    break
-            except Exception:
-                pass
+    def handle_accept(self):
+        pair = self.accept()
+        if pair is not None:
+            sock, addr = pair
+            print 'Incoming connection from %s' % repr(addr)
+            handler = EchoHandler(sock)
 
-    @atexit.register
-    def exit_handler():
-        clientsocket.close()
-        print("Server closing")
+
+if __name__ == "__main__":
+    server = EchoServer(HOST, PORT)
+    asyncore.loop()
