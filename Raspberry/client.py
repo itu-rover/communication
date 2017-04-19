@@ -15,20 +15,24 @@ class Client(asyncore.dispatcher):
         self.msg = "Hello, I'm Client"
 
     def handle_connect(self):
-        pass
+        print "connected"
 
     def handle_close(self):
+        print "closed"
         self.close()
 
     def handle_read(self):
         print(self.recv(1024))
+
+    def handle_error(self):
+        print "Server is closed..."
 
     def writable(self):
         return True
 
     def handle_write(self):
         sent = self.send(self.msg)
-        time.sleep(2)
+        time.sleep(1)
 
 
 if __name__ == "__main__":
