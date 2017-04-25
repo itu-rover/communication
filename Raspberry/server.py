@@ -35,14 +35,14 @@ class EchoServer(asyncore.dispatcher):
         self.bind((host, port))
         self.listen(5)
         logging.info('Listen')
-        print "listening"
+        print("listening")
 
     def handle_accept(self):
         pair = self.accept()
         if pair is not None:
             sock, addr = pair
             logging.info('A client connected: %s' % repr(addr))
-            print 'Incoming connection from %s' % repr(addr)
+            print('Incoming connection from %s' % repr(addr))
             self.handler = EchoHandler(sock)
             logging.warning('A client has disconnected: %s' % repr(addr))
 
