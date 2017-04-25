@@ -1,0 +1,383 @@
+
+********************************************************************************
+
+2017-04-25 20:27:05,573 Start main
+2017-04-25 20:27:05,573 Create a server
+2017-04-25 20:27:05,573 Listen
+2017-04-25 20:27:05,574 Create a serial node
+2017-04-25 20:27:05,575 Adding serials
+2017-04-25 20:27:05,578 Add serial from port: /dev/ttyUSB0
+2017-04-25 20:27:05,578 Initializing
+2017-04-25 20:27:06,580 Search for 1 serial
+2017-04-25 20:27:06,580 Adding utilities
+2017-04-25 20:27:06,580 Waiting a response from no: 0
+2017-04-25 20:27:07,037 Read the serial data ['RA', '']
+2017-04-25 20:27:07,038 RA is connected.
+2017-04-25 20:27:07,539 Add RA to utilities
+2017-04-25 20:27:07,539 Waiting data from "RA"
+2017-04-25 20:27:07,540 Start RA Reading Thread.
+2017-04-25 20:27:07,541 Start RA Writing Thread.
+2017-04-25 20:27:07,770 Start Server Thread
+2017-04-25 20:27:08,186 No connection detected!
+2017-04-25 20:27:13,362 Waiting data from "RA"
+2017-04-25 20:27:15,126 No connection detected!
+2017-04-25 20:27:16,226 A client connected: ('127.0.0.1', 58514)
+2017-04-25 20:27:16,246 A client has disconnected: ('127.0.0.1', 58514)
+2017-04-25 20:27:17,271 Read "Hello, I'm Client" from client
+2017-04-25 20:27:17,272 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:17,372 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:17,473 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:17,573 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:17,674 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:17,774 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:17,875 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:17,976 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:18,073 Read "Hello, I'm Client" from client
+2017-04-25 20:27:18,076 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:18,177 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:18,277 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:18,378 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:18,478 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:18,579 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:18,679 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:18,780 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:18,880 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:18,981 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:19,074 Read "Hello, I'm Client" from client
+2017-04-25 20:27:19,082 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:19,182 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:19,283 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:19,383 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:19,484 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:19,584 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:19,685 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:19,785 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:19,886 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:19,987 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:20,075 Read "Hello, I'm Client" from client
+2017-04-25 20:27:20,087 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:20,188 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:20,288 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:20,389 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:20,489 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:20,590 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:20,690 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:20,791 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:20,839 Waiting data from "RA"
+2017-04-25 20:27:20,839 Send "RA" from "RA"
+2017-04-25 20:27:20,839 Waiting data from "RA"
+2017-04-25 20:27:20,840 Send "RA" to client.
+2017-04-25 20:27:20,840 Send "RA" from "RA"
+2017-04-25 20:27:20,840 Waiting data from "RA"
+2017-04-25 20:27:20,840 Send "RA" from "RA"
+2017-04-25 20:27:20,840 Waiting data from "RA"
+2017-04-25 20:27:20,840 Send "RA" from "RA"
+2017-04-25 20:27:20,840 Waiting data from "RA"
+2017-04-25 20:27:20,840 Send "RA" from "RA"
+2017-04-25 20:27:20,841 Waiting data from "RA"
+2017-04-25 20:27:20,841 Send "RA" from "RA"
+2017-04-25 20:27:20,841 Waiting data from "RA"
+2017-04-25 20:27:20,841 Send "RA" from "RA"
+2017-04-25 20:27:20,841 Waiting data from "RA"
+2017-04-25 20:27:20,841 Send "RA" from "RA"
+2017-04-25 20:27:20,841 Waiting data from "RA"
+2017-04-25 20:27:20,841 Send "RA" from "RA"
+2017-04-25 20:27:20,841 Waiting data from "RA"
+2017-04-25 20:27:20,841 Send "RA" from "RA"
+2017-04-25 20:27:20,841 Waiting data from "RA"
+2017-04-25 20:27:20,842 Send "RA" from "RA"
+2017-04-25 20:27:20,842 Waiting data from "RA"
+2017-04-25 20:27:20,842 Send "RA" from "RA"
+2017-04-25 20:27:20,842 Waiting data from "RA"
+2017-04-25 20:27:20,842 Send "RA" from "RA"
+2017-04-25 20:27:20,842 Waiting data from "RA"
+2017-04-25 20:27:20,842 Send "RA" from "RA"
+2017-04-25 20:27:20,842 Waiting data from "RA"
+2017-04-25 20:27:20,842 Send "RA" from "RA"
+2017-04-25 20:27:20,842 Waiting data from "RA"
+2017-04-25 20:27:20,843 Send "RA" from "RA"
+2017-04-25 20:27:20,843 Waiting data from "RA"
+2017-04-25 20:27:20,843 Send "RA" from "RA"
+2017-04-25 20:27:20,843 Waiting data from "RA"
+2017-04-25 20:27:20,843 Send "RA" from "RA"
+2017-04-25 20:27:20,843 Waiting data from "RA"
+2017-04-25 20:27:20,843 Send "RA" from "RA"
+2017-04-25 20:27:20,843 Waiting data from "RA"
+2017-04-25 20:27:20,843 Send "RA" from "RA"
+2017-04-25 20:27:20,843 Waiting data from "RA"
+2017-04-25 20:27:20,843 Send "RA" from "RA"
+2017-04-25 20:27:20,844 Waiting data from "RA"
+2017-04-25 20:27:20,844 Send "RA" from "RA"
+2017-04-25 20:27:20,844 Waiting data from "RA"
+2017-04-25 20:27:20,844 Send "RA" from "RA"
+2017-04-25 20:27:20,844 Waiting data from "RA"
+2017-04-25 20:27:20,844 Send "RA" from "RA"
+2017-04-25 20:27:20,844 Waiting data from "RA"
+2017-04-25 20:27:20,891 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:20,940 Read "Hello, I'm Client" from client
+2017-04-25 20:27:20,940 Send "RA" to client.
+2017-04-25 20:27:20,992 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:21,020 Send "RA" from "RA"
+2017-04-25 20:27:21,020 Waiting data from "RA"
+2017-04-25 20:27:21,041 Read "Hello, I'm Client" from client
+2017-04-25 20:27:21,041 Send "RA" to client.
+2017-04-25 20:27:21,092 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:21,141 Read "Hello, I'm Client" from client
+2017-04-25 20:27:21,141 Send "RA" to client.
+2017-04-25 20:27:21,193 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:21,242 Read "Hello, I'm Client" from client
+2017-04-25 20:27:21,242 Send "RA" to client.
+2017-04-25 20:27:21,293 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:21,342 Read "Hello, I'm Client" from client
+2017-04-25 20:27:21,343 Send "RA" to client.
+2017-04-25 20:27:21,394 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:21,443 Read "Hello, I'm Client" from client
+2017-04-25 20:27:21,443 Send "RA" to client.
+2017-04-25 20:27:21,494 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:21,519 Send "RA" from "RA"
+2017-04-25 20:27:21,519 Waiting data from "RA"
+2017-04-25 20:27:21,543 Read "Hello, I'm Client" from client
+2017-04-25 20:27:21,544 Send "RA" to client.
+2017-04-25 20:27:21,595 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:21,644 Read "Hello, I'm Client" from client
+2017-04-25 20:27:21,644 Send "RA" to client.
+2017-04-25 20:27:21,695 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:21,745 Read "Hello, I'm Client" from client
+2017-04-25 20:27:21,745 Send "RA" to client.
+2017-04-25 20:27:21,796 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:21,845 Read "Hello, I'm Client" from client
+2017-04-25 20:27:21,845 Send "RA" to client.
+2017-04-25 20:27:21,896 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:21,946 Read "Hello, I'm Client" from client
+2017-04-25 20:27:21,946 Send "RA" to client.
+2017-04-25 20:27:21,997 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:22,019 Send "RA" from "RA"
+2017-04-25 20:27:22,019 Waiting data from "RA"
+2017-04-25 20:27:22,046 Read "Hello, I'm Client" from client
+2017-04-25 20:27:22,047 Send "RA" to client.
+2017-04-25 20:27:22,097 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:22,147 Read "Hello, I'm Client" from client
+2017-04-25 20:27:22,147 Send "RA" to client.
+2017-04-25 20:27:22,198 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:22,248 Read "Hello, I'm Client" from client
+2017-04-25 20:27:22,248 Send "RA" to client.
+2017-04-25 20:27:22,298 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:22,349 Read "Hello, I'm Client" from client
+2017-04-25 20:27:22,349 Send "RA" to client.
+2017-04-25 20:27:22,399 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:22,449 Read "Hello, I'm Client" from client
+2017-04-25 20:27:22,449 Send "RA" to client.
+2017-04-25 20:27:22,499 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:22,518 Send "RA" from "RA"
+2017-04-25 20:27:22,518 Waiting data from "RA"
+2017-04-25 20:27:22,550 Read "Hello, I'm Client" from client
+2017-04-25 20:27:22,550 Send "RA" to client.
+2017-04-25 20:27:22,600 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:22,650 Read "Hello, I'm Client" from client
+2017-04-25 20:27:22,651 Send "RA" to client.
+2017-04-25 20:27:22,700 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:22,751 Read "Hello, I'm Client" from client
+2017-04-25 20:27:22,751 Send "RA" to client.
+2017-04-25 20:27:22,801 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:22,852 Read "Hello, I'm Client" from client
+2017-04-25 20:27:22,852 Send "RA" to client.
+2017-04-25 20:27:22,901 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:22,952 Read "Hello, I'm Client" from client
+2017-04-25 20:27:22,953 Send "RA" to client.
+2017-04-25 20:27:23,002 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:23,017 Send "RA" from "RA"
+2017-04-25 20:27:23,017 Waiting data from "RA"
+2017-04-25 20:27:23,053 Read "Hello, I'm Client" from client
+2017-04-25 20:27:23,053 Send "RA" to client.
+2017-04-25 20:27:23,102 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:23,154 Read "Hello, I'm Client" from client
+2017-04-25 20:27:23,154 Send "RA" to client.
+2017-04-25 20:27:23,203 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:23,255 Read "Hello, I'm Client" from client
+2017-04-25 20:27:23,255 Send "RA" to client.
+2017-04-25 20:27:23,303 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:23,355 Read "Hello, I'm Client" from client
+2017-04-25 20:27:23,356 Send "RA" to client.
+2017-04-25 20:27:23,404 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:23,456 Read "Hello, I'm Client" from client
+2017-04-25 20:27:23,456 Send "RA" to client.
+2017-04-25 20:27:23,504 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:23,516 Send "RA" from "RA"
+2017-04-25 20:27:23,516 Waiting data from "RA"
+2017-04-25 20:27:23,557 Read "Hello, I'm Client" from client
+2017-04-25 20:27:23,557 Send "RA" to client.
+2017-04-25 20:27:23,605 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:23,658 Read "Hello, I'm Client" from client
+2017-04-25 20:27:23,658 Send "RA" to client.
+2017-04-25 20:27:23,705 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:23,758 Read "Hello, I'm Client" from client
+2017-04-25 20:27:23,759 Send "RA" to client.
+2017-04-25 20:27:23,806 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:23,859 Read "Hello, I'm Client" from client
+2017-04-25 20:27:23,859 Send "RA" to client.
+2017-04-25 20:27:23,906 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:23,960 Read "Hello, I'm Client" from client
+2017-04-25 20:27:23,960 Send "RA" to client.
+2017-04-25 20:27:24,007 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:24,016 Send "RA" from "RA"
+2017-04-25 20:27:24,016 Waiting data from "RA"
+2017-04-25 20:27:24,061 Read "Hello, I'm Client" from client
+2017-04-25 20:27:24,061 Send "RA" to client.
+2017-04-25 20:27:24,107 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:24,161 Read "Hello, I'm Client" from client
+2017-04-25 20:27:24,162 Send "RA" to client.
+2017-04-25 20:27:24,208 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:24,262 Read "Hello, I'm Client" from client
+2017-04-25 20:27:24,262 Send "RA" to client.
+2017-04-25 20:27:24,308 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:24,363 Read "Hello, I'm Client" from client
+2017-04-25 20:27:24,363 Send "RA" to client.
+2017-04-25 20:27:24,409 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:24,464 Read "Hello, I'm Client" from client
+2017-04-25 20:27:24,464 Send "RA" to client.
+2017-04-25 20:27:24,509 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:24,515 Send "RA" from "RA"
+2017-04-25 20:27:24,515 Waiting data from "RA"
+2017-04-25 20:27:24,564 Read "Hello, I'm Client" from client
+2017-04-25 20:27:24,565 Send "RA" to client.
+2017-04-25 20:27:24,610 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:24,665 Read "Hello, I'm Client" from client
+2017-04-25 20:27:24,665 Send "RA" to client.
+2017-04-25 20:27:24,710 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:24,766 Read "Hello, I'm Client" from client
+2017-04-25 20:27:24,766 Send "RA" to client.
+2017-04-25 20:27:24,810 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:24,866 Read "Hello, I'm Client" from client
+2017-04-25 20:27:24,867 Send "RA" to client.
+2017-04-25 20:27:24,911 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:24,967 Read "Hello, I'm Client" from client
+2017-04-25 20:27:24,967 Send "RA" to client.
+2017-04-25 20:27:25,011 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:25,014 Send "RA" from "RA"
+2017-04-25 20:27:25,014 Waiting data from "RA"
+2017-04-25 20:27:25,068 Read "Hello, I'm Client" from client
+2017-04-25 20:27:25,068 Send "RA" to client.
+2017-04-25 20:27:25,112 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:25,168 Read "Hello, I'm Client" from client
+2017-04-25 20:27:25,169 Send "RA" to client.
+2017-04-25 20:27:25,212 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:25,269 Read "Hello, I'm Client" from client
+2017-04-25 20:27:25,269 Send "RA" to client.
+2017-04-25 20:27:25,313 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:25,370 Read "Hello, I'm Client" from client
+2017-04-25 20:27:25,370 Send "RA" to client.
+2017-04-25 20:27:25,413 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:25,471 Read "Hello, I'm Client" from client
+2017-04-25 20:27:25,471 Send "RA" to client.
+2017-04-25 20:27:25,514 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:25,514 Send "RA" from "RA"
+2017-04-25 20:27:25,514 Waiting data from "RA"
+2017-04-25 20:27:25,571 Read "Hello, I'm Client" from client
+2017-04-25 20:27:25,571 Send "RA" to client.
+2017-04-25 20:27:25,614 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:25,672 Read "Hello, I'm Client" from client
+2017-04-25 20:27:25,672 Send "RA" to client.
+2017-04-25 20:27:25,714 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:25,773 Read "Hello, I'm Client" from client
+2017-04-25 20:27:25,773 Send "RA" to client.
+2017-04-25 20:27:25,815 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:25,873 Read "Hello, I'm Client" from client
+2017-04-25 20:27:25,874 Send "RA" to client.
+2017-04-25 20:27:25,915 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:25,974 Read "Hello, I'm Client" from client
+2017-04-25 20:27:25,974 Send "RA" to client.
+2017-04-25 20:27:26,013 Send "RA" from "RA"
+2017-04-25 20:27:26,014 Waiting data from "RA"
+2017-04-25 20:27:26,016 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:26,075 Read "Hello, I'm Client" from client
+2017-04-25 20:27:26,075 Send "RA" to client.
+2017-04-25 20:27:26,116 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:26,176 Read "Hello, I'm Client" from client
+2017-04-25 20:27:26,176 Send "RA" to client.
+2017-04-25 20:27:26,217 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:26,276 Read "Hello, I'm Client" from client
+2017-04-25 20:27:26,277 Send "RA" to client.
+2017-04-25 20:27:26,317 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:26,377 Read "Hello, I'm Client" from client
+2017-04-25 20:27:26,377 Send "RA" to client.
+2017-04-25 20:27:26,418 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:26,478 Read "Hello, I'm Client" from client
+2017-04-25 20:27:26,478 Send "RA" to client.
+2017-04-25 20:27:26,513 Send "RA" from "RA"
+2017-04-25 20:27:26,513 Waiting data from "RA"
+2017-04-25 20:27:26,518 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:26,578 Read "Hello, I'm Client" from client
+2017-04-25 20:27:26,579 Send "RA" to client.
+2017-04-25 20:27:26,619 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:26,679 Read "Hello, I'm Client" from client
+2017-04-25 20:27:26,680 Send "RA" to client.
+2017-04-25 20:27:26,719 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:26,780 Read "" from client
+2017-04-25 20:27:27,012 Send "RA" from "RA"
+2017-04-25 20:27:27,012 Waiting data from "RA"
+2017-04-25 20:27:27,526 Send "RA" from "RA"
+2017-04-25 20:27:27,543 Waiting data from "RA"
+2017-04-25 20:27:28,022 Send "RA" from "RA"
+2017-04-25 20:27:28,022 Waiting data from "RA"
+2017-04-25 20:27:28,526 Send "RA" from "RA"
+2017-04-25 20:27:28,527 Waiting data from "RA"
+2017-04-25 20:27:28,750 A client connected: ('127.0.0.1', 58516)
+2017-04-25 20:27:28,774 A client has disconnected: ('127.0.0.1', 58516)
+2017-04-25 20:27:29,128 Send "RA" from "RA"
+2017-04-25 20:27:29,258 Send "RA" to client.
+2017-04-25 20:27:29,258 Waiting data from "RA"
+2017-04-25 20:27:29,598 Read "Hello, I'm Client" from client
+2017-04-25 20:27:29,599 Send "RA" from "RA"
+2017-04-25 20:27:29,599 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:29,599 Send "RA" to client.
+2017-04-25 20:27:29,599 Waiting data from "RA"
+2017-04-25 20:27:29,700 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:29,700 Read "Hello, I'm Client" from client
+2017-04-25 20:27:29,700 Send "RA" to client.
+2017-04-25 20:27:29,800 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:29,801 Read "Hello, I'm Client" from client
+2017-04-25 20:27:29,801 Send "RA" to client.
+2017-04-25 20:27:29,901 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:29,901 Read "Hello, I'm Client" from client
+2017-04-25 20:27:29,901 Send "RA" to client.
+2017-04-25 20:27:30,001 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:30,002 Read "Hello, I'm Client" from client
+2017-04-25 20:27:30,002 Send "RA" to client.
+2017-04-25 20:27:30,008 Send "RA" from "RA"
+2017-04-25 20:27:30,008 Waiting data from "RA"
+2017-04-25 20:27:30,102 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:30,102 Read "Hello, I'm Client" from client
+2017-04-25 20:27:30,102 Send "RA" to client.
+2017-04-25 20:27:30,202 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:30,203 Read "Hello, I'm Client" from client
+2017-04-25 20:27:30,203 Send "RA" to client.
+2017-04-25 20:27:30,303 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:30,303 Read "Hello, I'm Client" from client
+2017-04-25 20:27:30,304 Send "RA" to client.
+2017-04-25 20:27:30,403 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:30,404 Read "Hello, I'm Client" from client
+2017-04-25 20:27:30,404 Send "RA" to client.
+2017-04-25 20:27:30,504 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:30,505 Read "Hello, I'm Client" from client
+2017-04-25 20:27:30,505 Send "RA" to client.
+2017-04-25 20:27:30,507 Send "RA" from "RA"
+2017-04-25 20:27:30,508 Waiting data from "RA"
+2017-04-25 20:27:30,604 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:30,606 Read "Hello, I'm Client" from client
+2017-04-25 20:27:30,606 Send "RA" to client.
+2017-04-25 20:27:30,705 Write "Hello, I'm Client" to "RA"
+2017-04-25 20:27:30,707 Read "Hello, I'm Client" from client
+2017-04-25 20:27:30,707 Send "RA" to client.
+
+********************************************************************************
+
+2017-04-25 20:50:21,800 Start main
+2017-04-25 20:50:21,801 Create a server
+2017-04-25 20:50:21,801 Listen
+2017-04-25 20:50:21,802 Create a serial node
+2017-04-25 20:50:21,802 Adding serials
+2017-04-25 20:50:21,806 Add serial from port: /dev/ttyUSB0
+2017-04-25 20:50:21,806 Initializing
+2017-04-25 20:50:22,807 Search for 1 serial
+2017-04-25 20:50:22,808 Adding utilities
+2017-04-25 20:50:22,808 Waiting a response from no: 0
