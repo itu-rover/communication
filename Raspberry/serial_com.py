@@ -19,7 +19,7 @@ utility_names = {"SC": "Sensor Controller",
 
 class SerialNode(object):
     def __init__(self, server):
-        self.ports = glob('/dev/ttyACM*')
+        self.ports = glob('/dev/ttyACM*') + glob('/dev/ttyUSB*')
         self.server = server
         self.serials = []
         self.utilities = {}
