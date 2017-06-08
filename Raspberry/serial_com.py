@@ -19,7 +19,6 @@ utility_names = {"SC": "Sensor Controller",
 class SerialNode(object):
     def __init__(self):
         self.ports = glob('/dev/ttyACM*') + glob('/dev/ttyUSB*')
-        self.client = None
         self.msg_interval = WRITE_INTERVAL
         self.client = None
         self.is_connected = False
@@ -143,7 +142,6 @@ class SerialNode(object):
                 try:
                     if mc:
                         mc.write(self.msg[0] + "\n")
-                        #print("written to mc", self.msg[0])
 
                     if ra:
                         ra.write(self.msg[1] + "\n")
@@ -159,8 +157,6 @@ class SerialNode(object):
                         if sc_msg in ('go', 'delete', 'stop') or \
                            (sc_msg != "0,0" and sc_msg[-1].isdigit()):
                             sc.write(sc_msg + '\n')
-                            #print("written to sc", sc_msg)
-                            self.is_repeating = True
 
                     except Exception as e:
                         pass
@@ -276,56 +272,6 @@ class SerialNode(object):
         except Exception as e:
             print(e)
 
-    def start_checking(self):
-        try:
-            check_thread = threading.Thread(
-                target=self.check_client,
-                args=())
-            check_thread.daemon = True
-            check_thread.start()
-        except Exception as e:
-            print(e)
-
-    def check_client(self):
-        while True:
-            if self.client:
-                try:
-                    is_data = self.client.send("")
-                    if not is_data:
-                        self.client.close()
-                        self.client = None
-
-                        try:
-                            sc = self.utilities["SC"]
-                        except KeyError:
-                            sc = None
-
-                        if sc and not self.is_lost:
-                            try:
-                                sc.write("lost\n")
-                                self.is_lost = True
-                                print("lost")
-                            except Exception as e:
-                                print("16", e)
-
-                except Exception as e:
-                    sc = None
-                    self.client.close()
-                    self.client = None
-
-                    try:
-                        sc = self.utilities["SC"]
-                    except KeyError:
-                        sc = None
-
-                    if sc and not self.is_lost:
-                        try:
-                            sc.write("lost\n")
-                            self.is_lost = True
-                            print("lost")
-                        except Exception as e:
-                            print("17", e)
-
     def run(self):
         print("running")
         is_checking = True
@@ -333,7 +279,6 @@ class SerialNode(object):
         try:
             self.start_reading()
             self.start_writing()
-            #self.start_checking()
 
             if not self.is_connected:
                 self.start_server()
