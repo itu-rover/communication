@@ -2,163 +2,396 @@
 # -*- coding: utf-8 -*-
 
 import time
-import asyncore
-import logging
+import os
 import sys
 import threading
 import serial
+import socket
 from glob import glob
 from settings import *
 
-
 utility_names = {"SC": "Sensor Controller",
-                 "BM": "Battery Management",
-                 "RA": "Robotic Arm",
-                 "MC": "Motor Controller",
-                 "LR": "LORA"}
+                 "R": "Robotic Arm",
+                 "PR": "Probe",
+                 "M":  "Motor Controller"}
 
 
 class SerialNode(object):
-    def __init__(self, server):
+    def __init__(self):
         self.ports = glob('/dev/ttyACM*') + glob('/dev/ttyUSB*')
-        self.server = server
+        self.client = None
+        self.msg_interval = WRITE_INTERVAL
+        self.client = None
+        self.is_connected = False
+        self.is_lost = False
+        self.is_first = True
+        self.configure_server()
+        self.configure()
+
+    def configure_server(self):
+        self.server = socket.socket()
+        self.server.bind((HOST, PORT))
+        self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.server.listen(5)
+
+    def configure(self):
         self.serials = []
         self.utilities = {}
         self.msg = None
-        self.msg_interval = WRITE_INTERVAL
-        logging.info('Create a serial node')
+        self.is_writing = False
+        self.is_reading = False
+        self.is_repeating = False
+        time.sleep(2)
         self.add_serials()
         self.add_utilities()
 
-    def read_data(self, utility_name):
-        print("*** reading...")
-        while True:
-            utility = self.utilities[utility_name]
-            if utility.inWaiting:
-                utility.flush()
+    def read_data(self):
+        sc, pr = None, None
+
+        try:
+            sc = self.utilities["SC"]
+        except KeyError:
+            self.is_reading = False
+
+        try:
+            pr = self.utilities["PR"]
+        except KeyError:
+            self.is_reading = False
+
+        if sc or pr:
+            self.is_reading = True
+
+        while self.is_reading:
+            pr_data, sc_data, serial_data = None, None, None
+
+            try:
+                if sc:
+                    sc_data = sc.readline()
+
+                if pr:
+                    pr_data = pr.readline()
+
                 try:
-                    logging.info('Waiting data from "%s"' % utility_name)
-                    data_array = utility.readline().split()
-                    try:
-                        serial_data = " ".join(data_array) + "\n"
-                        self.server.handler.serial_data = serial_data
-                        logging.info('Send "%s" from "%s"',
-                                     serial_data.split('\n')[0], utility_name)
-                    except Exception:
-                        logging.warning('No connection detected!')
-                        print("No connection detected!")
-                        time.sleep(5)
+                    if sc_data and pr_data:
+                        serial_data = sc_data.split()[0] + ',' + pr_data
+                    elif pr_data and not sc_data:
+                        serial_data = pr_data
+                    elif sc_data and not pr_data:
+                        serial_data = sc_data
+
+                    if self.client:
+                        try:
+                            self.client.send(serial_data)
+                        except Exception as e:
+                            pass
+
+                except Exception as e:
+                    print("13", e)
+            except OSError:
+                pass
+            except serial.SerialException:
+                self.is_reading = False
+
+                if sc:
+                    sc.close()
+                    print("sc closed")
+
+                if pr:
+                    pr.close()
+                    print("pr closed")
+            except Exception:
+                pass
+        print("reading thread ended!")
+
+    def write_data(self):
+        mc, ra, sc = None, None, None
+
+        if "M" in self.utilities:
+            mc = self.utilities["M"]
+
+        if "R" in self.utilities:
+            ra = self.utilities["R"]
+
+        if "SC" in self.utilities:
+            sc = self.utilities["SC"]
+
+        if mc or ra or sc:
+            self.is_writing = True
+
+        while self.is_writing:
+            self.msg, sc_msg = None, "0,0"
+
+            if self.client:
+                try:
+                    self.msg = self.client.recv(1024)
+
+                    if self.msg == '' and not self.is_lost:
+                        sc.write("lost\n")
+                        self.is_lost = True
+                        print("lost")
+                        self.client.close()
+                        self.client = None
                 except Exception as e:
                     print(e)
-                    logging.info('"%s" has faced a problem: %s',
-                                 utility_name, e)
-
-    def write_data(self, utility_name):
-        print("*** writing...")
-        while True:
-            utility = self.utilities[utility_name]
-            try:
-                self.msg = self.server.handler.data
-            except AttributeError:
-                self.msg = None
-            except Exception as e:
-                print(e)
 
             if self.msg:
-                print("writing: %s" % self.msg)
-                utility.write(self.msg)
-                logging.info('Write "%s" to "%s"' % (self.msg, utility_name))
-                time.sleep(self.msg_interval)
+                try:
+                    self.msg = self.msg.split("/")
+                except:
+                    continue
+
+                try:
+                    if mc:
+                        mc.write(self.msg[0] + "\n")
+                        #print("written to mc", self.msg[0])
+
+                    if ra:
+                        ra.write(self.msg[1] + "\n")
+                except serial.SerialException:
+                    pass
+                except Exception as e:
+                    print("14", e)
+
+                if sc:
+                    try:
+                        sc_msg = self.msg[2].split()[0]
+
+                        if sc_msg in ('go', 'delete', 'stop') or \
+                           (sc_msg != "0,0" and sc_msg[-1].isdigit()):
+                            sc.write(sc_msg + '\n')
+                            #print("written to sc", sc_msg)
+                            self.is_repeating = True
+
+                    except Exception as e:
+                        pass
+
+        print("writing thread ended!")
 
     def add_serials(self):
-        print("*** Adding serials...")
-        logging.info('Adding serials')
+        print("adding serials...")
         for port in self.ports:
             try:
                 self.serials.append(serial.Serial(port, 115200))
-                logging.info('Add serial from port: %s', port)
             except Exception as e:
-                print(e)
-                logging.error(e)
+                print("serial error", e)
 
         if not self.serials:
-            logging.warning('Could not find a serial!')
+            print("no serials")
 
     def add_utilities(self):
-        print("*** Initializing...")
-        logging.info('Initializing')
-        time.sleep(1)
+        print("adding utilities...")
         serial_no = 0
         num_serials = len(self.serials)
-        logging.info('Search for %d serial' % num_serials)
-        logging.info('Adding utilities')
+        time.sleep(1)
+        current = time.time()
 
         while serial_no != num_serials:
-            logging.info('Waiting a response from no: %d', serial_no)
-            serial_data = self.serials[serial_no].readline().split("\r\n")
-            logging.info('Read the serial data %s' % serial_data)
-            serial_data = serial_data[0].split(',')
-            utility_name = str(serial_data[0])
-
-            if utility_name in utility_names:
-                logging.info('%s is connected.' % utility_name)
-                print(utility_name + " Identified")
-                print("Connected to " +
-                      utility_names[utility_name] +
-                      ", initializing")
+            try:
+                if time.time() - current > 25:
+                    break
 
                 utility = self.serials[serial_no]
-                time.sleep(.5)
+                utility.timeout = 5
+                utility.write("AFAF0000AF8003020000920D0A".decode("hex"))
+                time.sleep(1)
+                if utility.inWaiting():
+                    serial_data = utility.readline().split("\r\n")
+                    serial_data = serial_data[0].split(",")
+                    utility_name = str(serial_data[0])
 
-                utility.flushInput()
-                utility.flushOutput()
-                self.utilities[utility_name] = utility
-                logging.info('Add %s to utilities' % utility_name)
+                    if utility_name in utility_names:
+                        print(utility_name + " Identified")
 
-                serial_no += 1
-            else:
-                logging.warning(
-                    '%s is not a valid utility name' % utility_name)
+                        self.utilities[utility_name] = utility
+
+                        utility.flushInput()
+                        utility.flushOutput()
+
+                        serial_no += 1
+                else:
+                    serial_no += 1
+            except serial.SerialException:
+                pass
+            except OSError:
+                pass
+            except Exception:
+                pass
+
+    def run_server(self):
+        try:
+            while True:
+                try:
+                    self.client, addr = self.server.accept()
+                    print('Got connection from', addr)
+
+                    if not self.is_first:
+                        try:
+                            sc = self.utilities["SC"]
+                        except KeyError:
+                            sc = None
+
+                        if sc and self.is_lost:
+                            try:
+                                sc.write("ok\n")
+                                self.is_lost = False
+                                print("ok")
+                            except Exception as e:
+                                print("15", e)
+
+                    self.is_first = False
+                except Exception as e:
+                    print("16", e)
+        except Exception as e:
+            print("17", e)
+
+    def start_server(self):
+        try:
+            server_thread = threading.Thread(
+                target=self.run_server,
+                args=())
+            server_thread.daemon = True
+            server_thread.start()
+        except Exception as e:
+            print(e)
+
+        self.is_connected = True
+
+    def start_reading(self):
+        try:
+            reading_thread = threading.Thread(
+                target=self.read_data,
+                args=())
+            reading_thread.daemon = True
+            reading_thread.start()
+        except Exception as e:
+            print(e)
+
+    def start_writing(self):
+        try:
+            writing_thread = threading.Thread(
+                target=self.write_data,
+                args=())
+            writing_thread.daemon = True
+            writing_thread.start()
+        except Exception as e:
+            print(e)
+
+    def start_checking(self):
+        try:
+            check_thread = threading.Thread(
+                target=self.check_client,
+                args=())
+            check_thread.daemon = True
+            check_thread.start()
+        except Exception as e:
+            print(e)
+
+    def check_client(self):
+        while True:
+            if self.client:
+                try:
+                    is_data = self.client.send("")
+                    if not is_data:
+                        self.client.close()
+                        self.client = None
+
+                        try:
+                            sc = self.utilities["SC"]
+                        except KeyError:
+                            sc = None
+
+                        if sc and not self.is_lost:
+                            try:
+                                sc.write("lost\n")
+                                self.is_lost = True
+                                print("lost")
+                            except Exception as e:
+                                print("16", e)
+
+                except Exception as e:
+                    sc = None
+                    self.client.close()
+                    self.client = None
+
+                    try:
+                        sc = self.utilities["SC"]
+                    except KeyError:
+                        sc = None
+
+                    if sc and not self.is_lost:
+                        try:
+                            sc.write("lost\n")
+                            self.is_lost = True
+                            print("lost")
+                        except Exception as e:
+                            print("17", e)
 
     def run(self):
+        print("running")
+        is_checking = True
+
         try:
-            for utility_name in self.utilities:
+            self.start_reading()
+            self.start_writing()
+            #self.start_checking()
+
+            if not self.is_connected:
+                self.start_server()
+
+            while is_checking:
+                self.current_ports = glob('/dev/ttyACM*') + glob('/dev/ttyUSB*')
+                self.change_serial = False
+
                 try:
-                    reading_thread = threading.Thread(
-                        target=self.read_data, args=(utility_name, ))
-                    reading_thread.daemon = True
-                    reading_thread.start()
-                    logging.info('Start %s Reading Thread.' % utility_name)
-                except Exception as e:
-                    print(e)
-                    logging.error('Reading thread had an error: "%s"' % e)
+                    sc = self.utilities["SC"]
+                except KeyError:
+                    sc = None
 
-            for utility_name in self.utilities:
-                try:
-                    writing_thread = threading.Thread(
-                        target=self.write_data,
-                        args=(utility_name, ))
-                    writing_thread.daemon = True
-                    writing_thread.start()
-                    logging.info('Start %s Writing Thread.' % utility_name)
-                except Exception as e:
-                    print(e)
-                    logging.error('Writing thread had an error: "%s"' % e)
+                if self.current_ports != self.ports:
+                    self.ports = self.current_ports
+                    self.change_serial = True
 
-            try:
-                server_thread = threading.Thread(
-                    target=asyncore.loop,
-                    args=())
-                server_thread.daemon = True
-                server_thread.start()
-                logging.info('Start Server Thread')
-            except Exception as e:
-                print(e)
-                logging.error('Server thread had an error: "%s"' % e)
+                if not self.change_serial:
+                    for utility_name in self.utilities:
+                        if not self.utilities[utility_name].isOpen():
+                            self.change_serial = True
+                            break
 
-            while True:
-                time.sleep(1)
-        except Exception:
-            logging.info('Exiting...')
+                if not self.change_serial:
+                    for ser in self.serials:
+                        try:
+                            time.sleep(1)
+                            if ser.inWaiting() and \
+                               not ser in self.utilities.values():
+                                self.change_serial = True
+                                break
+                        except Exception as e:
+                            print("11", e)
+
+                if not self.is_lost and not DEBUG:
+                    try:
+                        result = os.system("ping -c 1 192.168.1.30")
+
+                        if result != 0:
+                            sc.write("lost\n")
+                            self.is_lost = True
+                    except Exception as e:
+                        print(e)
+
+                if self.change_serial:
+                    print("changing...")
+
+                    self.change_serial = False
+                    self.configure()
+                    self.start_reading()
+                    self.start_writing()
+        except serial.SerialException:
+            self.configure()
+            self.run()
+        except OSError:
+            self.configure()
+            self.run()
+        except Exception as e:
+            print("19", e)
             print("Exiting...")
             sys.exit()
